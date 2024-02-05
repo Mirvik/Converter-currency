@@ -9,7 +9,7 @@ let conversionResultText = document.getElementById('conversion__result');
 let convertButton = document.getElementById('convert__btn');
 
 // ------- START GET ALL CURRENCIES ------------
-const allCurrenciesURL = "https://api.currencyfreaks.com/v2.0/rates/latest?apikey=6a561f9af2f34d35bb688019fcbaa680";
+const allCurrenciesURL = "https://raw.githubusercontent.com/Mirvik/currency-json/main/currency.json";
 
 async function fetchCurrenciesData(url){
     try {
@@ -71,7 +71,12 @@ inserAllCurrenciesInSelectsAndGetAllRates();
 
 
 // --------------- CONVERT -------------------
-convertButton.addEventListener('click', function () {
+convertButton.addEventListener('click', convertCurrency);
+amountCurrencyInput.addEventListener('change', convertCurrency);
+inputCurrencySelect.addEventListener('change', convertCurrency);
+outCurrencySelect.addEventListener('change', convertCurrency);
+
+function convertCurrency() {
     const amountCurrencyValue = amountCurrencyInput.value;      // --------GET AN AMOUNT---------
     const optionInputSelected = inputCurrencySelect.options[inputCurrencySelect.selectedIndex];         // GET OPTION, WHO IS SELECTED
     const optionOutSelected = outCurrencySelect.options[outCurrencySelect.selectedIndex];       // GET OPTION, WHO IS SELECTED
@@ -92,5 +97,5 @@ convertButton.addEventListener('click', function () {
 
         conversionResultText.innerHTML = resultString;
     }
-});
+}
 // ------------------- END CONVERT ----------------
